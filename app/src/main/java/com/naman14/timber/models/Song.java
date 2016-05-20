@@ -14,7 +14,9 @@
 
 package com.naman14.timber.models;
 
-public class Song {
+import cn.bmob.v3.BmobObject;
+
+public class Song extends BmobObject{
 
     public final long albumId;
     public final String albumName;
@@ -24,6 +26,38 @@ public class Song {
     public final long id;
     public final String title;
     public final int trackNumber;
+
+    public long getAlbumId() {
+        return albumId;
+    }
+
+    public String getAlbumName() {
+        return albumName;
+    }
+
+    public long getArtistId() {
+        return artistId;
+    }
+
+    public String getArtistName() {
+        return artistName;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getTrackNumber() {
+        return trackNumber;
+    }
 
     public Song() {
         this.id = -1;

@@ -14,6 +14,7 @@
 
 package com.naman14.timber.fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -31,19 +32,25 @@ import android.view.ViewGroup;
 
 import com.afollestad.appthemeengine.ATE;
 import com.naman14.timber.R;
+import com.naman14.timber.TimberApp;
 import com.naman14.timber.dataloaders.PlaylistLoader;
 import com.naman14.timber.dialogs.CreatePlaylistDialog;
 import com.naman14.timber.models.Playlist;
+import com.naman14.timber.models.SongLists;
 import com.naman14.timber.subfragments.PlaylistPagerFragment;
+import com.naman14.timber.utils.TimberUtils;
 import com.naman14.timber.widgets.MultiViewPager;
 
 import java.util.List;
+
+import cn.bmob.v3.listener.SaveListener;
 
 public class PlaylistFragment extends Fragment {
 
     int playlistcount;
     FragmentStatePagerAdapter adapter;
     MultiViewPager pager;
+    private String username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,7 +85,7 @@ public class PlaylistFragment extends Fragment {
         };
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(3);
-
+        new upload().execute("");;
         return rootView;
 
     }
@@ -134,6 +141,33 @@ public class PlaylistFragment extends Fragment {
             }
         }, 200);
 
+    }
+
+    private class upload extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            final List<Playlist> playlists = PlaylistLoader.getPlaylists(getActivity(), true);
+            TimberApp timberApp= (TimberApp) getActivity().getApplicationContext();
+            username=timberApp.getUsername();
+            if (username!=null){
+                SongLists songLists=new SongLists();
+                songLists.setUsername(username);
+                songLists.addAllUnique("playLists", playlists);
+                songLists.save(getActivity(), new SaveListener() {
+                    @Override
+                    public void onSuccess() {
+                        TimberUtils.showToast(getActivity(), "成功插入");
+                    }
+
+                    @Override
+                    public void onFailure(int i, String s) {
+                        TimberUtils.showToast(getActivity(), "插入失败" + s);
+                    }
+                });
+            }
+            return "Executed";
+        }
     }
 }
 

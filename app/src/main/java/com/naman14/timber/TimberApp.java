@@ -24,6 +24,15 @@ import com.nostra13.universalimageloader.utils.L;
 
 public class TimberApp extends Application {
 
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     private static TimberApp mInstance;
 

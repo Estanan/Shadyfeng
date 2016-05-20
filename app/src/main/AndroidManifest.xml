@@ -73,11 +73,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activities.DetailsActivity"
+            android:theme="@style/AppThemeNormalLight"/>
+
         <activity android:name=".activities.UserInforActivity"
             android:theme="@style/AppThemeNormalLight"/>
 
         <activity android:name=".activities.ChooseLogActivity"
-            android:theme="@style/AppThemeNormalLight"/>
+            android:theme="@style/AppTheme.FullScreen.Light"/>
 
         <activity android:name=".activities.RegestActivity"
             android:theme="@style/AppThemeNormalLight"/>

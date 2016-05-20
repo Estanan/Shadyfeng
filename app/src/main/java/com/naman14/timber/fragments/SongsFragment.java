@@ -28,23 +28,30 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.naman14.timber.R;
+import com.naman14.timber.TimberApp;
 import com.naman14.timber.activities.BaseActivity;
 import com.naman14.timber.adapters.SongsListAdapter;
 import com.naman14.timber.dataloaders.SongLoader;
 import com.naman14.timber.listeners.MusicStateListener;
+import com.naman14.timber.models.AllSongs;
 import com.naman14.timber.models.Song;
 import com.naman14.timber.utils.PreferencesUtility;
 import com.naman14.timber.utils.SortOrder;
+import com.naman14.timber.utils.TimberUtils;
 import com.naman14.timber.widgets.DividerItemDecoration;
 import com.naman14.timber.widgets.FastScroller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.listener.SaveListener;
 
 public class SongsFragment extends Fragment implements MusicStateListener {
 
     private SongsListAdapter mAdapter;
     private RecyclerView recyclerView;
     private PreferencesUtility mPreferences;
+    private String username;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -146,6 +153,26 @@ public class SongsFragment extends Fragment implements MusicStateListener {
         protected String doInBackground(String... params) {
             if (getActivity() != null)
                 mAdapter = new SongsListAdapter((AppCompatActivity) getActivity(), SongLoader.getAllSongs(getActivity()), false);
+            ArrayList<Song> arrayList = new ArrayList();
+            arrayList=SongLoader.getAllSongs(getActivity());
+            TimberApp timberApp= (TimberApp) getActivity().getApplicationContext();
+            username=timberApp.getUsername();
+            if (username!=null){
+                AllSongs song=new AllSongs();
+                song.setUsername(username);
+                song.addAllUnique("songArr",arrayList);
+                song.save(getActivity(), new SaveListener() {
+                    @Override
+                    public void onSuccess() {
+                        TimberUtils.showToast(getActivity(),"成功插入");
+                    }
+
+                    @Override
+                    public void onFailure(int i, String s) {
+                        TimberUtils.showToast(getActivity(),"插入失败"+s);
+                    }
+                });
+            }
             return "Executed";
         }
 

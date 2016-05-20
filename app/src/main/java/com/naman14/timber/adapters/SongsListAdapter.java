@@ -75,12 +75,21 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Item
         }
     }
 
+    public List<Song> getArraylist() {
+        return arraylist;
+    }
+
+    public void setArraylist(List<Song> arraylist) {
+        this.arraylist = arraylist;
+    }
+
     @Override
     public void onBindViewHolder(ItemHolder itemHolder, int i) {
         Song localItem = arraylist.get(i);
 
         itemHolder.title.setText(localItem.title);
         itemHolder.artist.setText(localItem.artistName);
+
 
         ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(localItem.albumId).toString(), itemHolder.albumArt, new DisplayImageOptions.Builder().cacheInMemory(true).showImageOnFail(R.drawable.ic_empty_music2).resetViewBeforeLoading(true).build());
         if (MusicPlayer.getCurrentAudioId() == localItem.id) {

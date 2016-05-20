@@ -14,35 +14,27 @@
 
 package com.naman14.timber.models;
 
+import java.util.List;
+
 import cn.bmob.v3.BmobObject;
 
-public class Playlist extends BmobObject{
+public class AllSongs extends BmobObject{
+    private String username;
+    private List<Song> songArr;
 
-    public final long id;
-    public final String name;
-    public final int songCount;
-
-    public Playlist() {
-        this.id = -1;
-        this.name = "";
-        this.songCount = -1;
+    public String getUsername() {
+        return username;
     }
 
-    public long getId() {
-        return id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getName() {
-        return name;
+    public List<Song> getSongArr() {
+        return songArr;
     }
 
-    public int getSongCount() {
-        return songCount;
-    }
-
-    public Playlist(long _id, String _name, int _songCount) {
-        this.id = _id;
-        this.name = _name;
-        this.songCount = _songCount;
+    public void setSongArr(List<Song> songArr) {
+        this.songArr = songArr;
     }
 }
