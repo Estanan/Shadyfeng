@@ -44,7 +44,10 @@ import com.naman14.timber.widgets.FastScroller;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class SongsFragment extends Fragment implements MusicStateListener {
 
@@ -154,22 +157,58 @@ public class SongsFragment extends Fragment implements MusicStateListener {
             if (getActivity() != null)
                 mAdapter = new SongsListAdapter((AppCompatActivity) getActivity(), SongLoader.getAllSongs(getActivity()), false);
             ArrayList<Song> arrayList = new ArrayList();
-            arrayList=SongLoader.getAllSongs(getActivity());
-            TimberApp timberApp= (TimberApp) getActivity().getApplicationContext();
-            username=timberApp.getUsername();
-            if (username!=null){
-                AllSongs song=new AllSongs();
-                song.setUsername(username);
-                song.addAllUnique("songArr",arrayList);
-                song.save(getActivity(), new SaveListener() {
+            arrayList = SongLoader.getAllSongs(getActivity());
+            TimberApp timberApp = (TimberApp) getActivity().getApplicationContext();
+            username = timberApp.getUsername();
+
+            /**
+             * 查询用户AllSongLists,获取SongLists的objectId
+             */
+            if (username != null) {
+                final String[] objectId = new String[1];
+                BmobQuery<AllSongs> query = new BmobQuery<>();
+                query.addWhereEqualTo("username", username);
+                query.findObjects(getActivity(), new FindListener<AllSongs>() {
+                    @Override
+                    public void onSuccess(List<AllSongs> list) {
+                        for (AllSongs allSongs : list) {
+                            objectId[0] = allSongs.getObjectId();
+                        }
+                        TimberUtils.showToast(getActivity(), objectId[0]);
+                    }
+
+                    @Override
+                    public void onError(int i, String s) {
+
+                    }
+                });
+
+                /**
+                 * 插入allsonglists
+                 */
+                final AllSongs allsong = new AllSongs();
+                allsong.setUsername(username);
+                allsong.addAllUnique("songArr", arrayList);
+                allsong.save(getActivity(), new SaveListener() {
                     @Override
                     public void onSuccess() {
-                        TimberUtils.showToast(getActivity(),"成功插入");
+                        TimberUtils.showToast(getActivity(), "allsong成功插入");
                     }
 
                     @Override
                     public void onFailure(int i, String s) {
-                        TimberUtils.showToast(getActivity(),"插入失败"+s);
+                        TimberUtils.showToast(getActivity(), "插入失败" + s);
+                        allsong.update(getActivity(), objectId[0], new UpdateListener() {
+                            @Override
+                            public void onSuccess() {
+                                TimberUtils.showToast(getActivity(), "allsong成功更新");
+                            }
+
+                            @Override
+                            public void onFailure(int i, String s) {
+                                TimberUtils.showToast(getActivity(), "allsong更新失败" + s + i + objectId[0]);
+                            }
+                        });
                     }
                 });
             }

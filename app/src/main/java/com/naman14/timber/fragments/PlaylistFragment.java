@@ -43,7 +43,10 @@ import com.naman14.timber.widgets.MultiViewPager;
 
 import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class PlaylistFragment extends Fragment {
 
@@ -150,8 +153,33 @@ public class PlaylistFragment extends Fragment {
             final List<Playlist> playlists = PlaylistLoader.getPlaylists(getActivity(), true);
             TimberApp timberApp= (TimberApp) getActivity().getApplicationContext();
             username=timberApp.getUsername();
+
+            /**
+             * 获取SongLists的objectId
+             */
+            final String[] objectId = new String[1];
+            BmobQuery<SongLists> query=new BmobQuery<>();
+            query.addWhereEqualTo("username", username);
+            query.findObjects(getActivity(), new FindListener<SongLists>() {
+                @Override
+                public void onSuccess(List<SongLists> list) {
+                    for (SongLists songLists : list) {
+                        objectId[0] = songLists.getObjectId();
+                    }
+                    TimberUtils.showToast(getActivity(), objectId[0]);
+                }
+
+                @Override
+                public void onError(int i, String s) {
+
+                }
+            });
+
+            /**
+             * 插入playlists
+             */
             if (username!=null){
-                SongLists songLists=new SongLists();
+                final SongLists songLists=new SongLists();
                 songLists.setUsername(username);
                 songLists.addAllUnique("playLists", playlists);
                 songLists.save(getActivity(), new SaveListener() {
@@ -162,9 +190,26 @@ public class PlaylistFragment extends Fragment {
 
                     @Override
                     public void onFailure(int i, String s) {
-                        TimberUtils.showToast(getActivity(), "插入失败" + s);
+                        TimberUtils.showToast(getActivity(), "Playlists插入失败" + s + i);
+                        /**
+                         * 如果存在，则更新数组
+                         */
+                        if (i==401){
+                            songLists.update(getActivity(), objectId[0], new UpdateListener() {
+                                @Override
+                                public void onSuccess() {
+                                    TimberUtils.showToast(getActivity(), "Playlists成功更新");
+                                }
+
+                                @Override
+                                public void onFailure(int i, String s) {
+                                    TimberUtils.showToast(getActivity(), "Playlists更新失败" + s+i+objectId[0]);
+                                }
+                            });
+                        }
                     }
                 });
+
             }
             return "Executed";
         }

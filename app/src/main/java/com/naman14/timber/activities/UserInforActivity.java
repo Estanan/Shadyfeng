@@ -40,16 +40,17 @@ public class UserInforActivity extends AppCompatActivity {
     UserSongListAdapter userSongListAdapter;
     String username;
     Bundle bundle=new Bundle();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userinfor);
+
         initView();
         initData();
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
-        TimberApp timberApp= (TimberApp) getApplicationContext();
-        username=timberApp.getUsername();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -110,8 +111,16 @@ public class UserInforActivity extends AppCompatActivity {
                         intentt.putExtras(bundle);
                         startActivity(intentt);
                         break;
+                    case 5:
+                        bundle.putString("ways", "a");
+                        Intent intenta = new Intent(UserInforActivity.this, DetailsActivity.class);
+                        intenta.putExtras(bundle);
+                        startActivity(intenta);
+                        TimberUtils.showToast(UserInforActivity.this,position+"");
+                        break;
                     default:
                         break;
+
                 }
             }
 
@@ -128,47 +137,54 @@ public class UserInforActivity extends AppCompatActivity {
         recyclerView= (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
+    }
+    private List<String> datas;
+    private void initData() {
+        datas = new ArrayList<>();
         BmobQuery<SongLists> query=new BmobQuery<SongLists>();
         TimberApp timberApp= (TimberApp) getApplicationContext();
         username=timberApp.getUsername();
         query.addWhereEqualTo("username", "shady");
-
         query.findObjects(UserInforActivity.this, new FindListener<SongLists>() {
             @Override
             public void onSuccess(List<SongLists> list) {
                 for (SongLists song : list) {
-                   List<Playlist> all=list.get(0).getPlayLists();
-                    List<String> data=new ArrayList<String>();
+                    List<Playlist> all = list.get(0).getPlayLists();
+//                    List<String> data=new ArrayList<String>();
                     String s;
-                    for (int i=0;i<all.size();i++){
-
-                        s=all.get(i).getName();
-                        data.add(s);
+                    for (int i = 0; i < all.size(); i++) {
+                        s = all.get(i).getName();
+                        datas.add(s);
                     }
-                    userSongListAdapter=new UserSongListAdapter(UserInforActivity.this,data);
-                    recyclerView.setAdapter(userSongListAdapter);
+                    datas.add("全部歌曲");
+//                    userSongListAdapter=new UserSongListAdapter(UserInforActivity.this,datas);
+//                    recyclerView.setAdapter(userSongListAdapter);
 //                    TimberUtils.showToast(UserInforActivity.this, s);
-
                 }
                 TimberUtils.showToast(UserInforActivity.this, "成功");
             }
 
             @Override
             public void onError(int i, String s) {
+                TimberUtils.showToast(UserInforActivity.this, "失败"+i+s);
 
             }
         });
-    }
 
-    private void initData() {
-        List<String> datas = new ArrayList<>();
 //        for (int i = 0; i < 100; i++) {
-//            datas.add(i);
+        datas.add("全部歌曲");
+        datas.add("最近添加");
+        datas.add("最近播放");
+        datas.add("我的最佳单曲");
+        datas.add("我喜欢");
+        datas.add("我喜欢");
+        datas.add("我喜欢");
+
+
+
 //        }
 //        for (int i=0;i<)
-        userSongListAdapter=new UserSongListAdapter(this,datas);
+        userSongListAdapter=new UserSongListAdapter(UserInforActivity.this,datas);
         recyclerView.setAdapter(userSongListAdapter);
     }
-
 }
