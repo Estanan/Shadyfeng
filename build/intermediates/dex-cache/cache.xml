@@ -1,3 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="292a9fa091757208efa65e77eef63088247e51f3">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.2.0_4bad0fcdd8e26e995bf1437745b441087dd6255b.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.github.afollestad.material-dialogs\core\0.8.5.3\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8174013f25a7d1f9bb4e50e2e3dc11254dee1442">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.github.afollestad.material-dialogs-core-0.8.5.3_873d98d522ece9c4bae3e9b936dea90722669eb2.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e3578f92f7462d1a935a1d36173e3bdd1234976">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.2.0_3a3ba9999ee6989a4105459c31b9518c2826cd00.jar" />
+    </item>
+    <item
+        jar="C:\Users\shadyfeng\.gradle\caches\modules-2\files-2.1\com.nostra13.universalimageloader\universal-image-loader\1.9.4\dd9eeb557650c4ad7394df23f0f5cf27a7cfc697\universal-image-loader-1.9.4.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="dd9eeb557650c4ad7394df23f0f5cf27a7cfc697">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.4_64bd18128433af21b3ff023ee0dab22774cffdeb.jar" />
+    </item>
+    <item
+        jar="C:\Users\shadyfeng\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\gson-2.3.1_103cadd8fe0eb9c000ef81b969d237e725d77af4.jar" />
+    </item>
+    <item
+        jar="E:\DevelopTool\AsSDK\extras\android\m2repository\com\android\support\support-annotations\23.2.0\support-annotations-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c5bf571bb10462bd90e5419ade67793f71acbc87">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.0_87fc4a9ad9bddcefd37b01e588d63cc78d4c8e40.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.android.support\design\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1aa5b025efe97f5006f5be16d6ca67c6c3c0c0d8">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.2.0_dfe890d5c2966ca2ee5df4b8d38439e869703b94.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.android.support\palette-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="897400f08e8b3f5e290a5da388973f7cfe700965">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.android.support-palette-v7-23.2.0_d25f957dc10883dd52199466e18953268a95ca07.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d4c936aa8c7d2522c82e3f1829c791d9e367f009">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.2.0_c56b1ede3d75175876df83ff5b7014b3e763de9c.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\me.zhanghai.android.materialprogressbar\library\1.1.4\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2a24cba08e1d865a79e61335f5a1bd64d520106d">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\me.zhanghai.android.materialprogressbar-library-1.1.4_09e8f3ee2d7205df28bacfa387fd54237d2219aa.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.2.0_36739949387f3c80fa1ccb48ce4ecc84ea3a00ff.jar" />
+    </item>
+    <item
+        jar="E:\DevelopTool\AsSDK\build-tools\23.0.2\renderscript\lib\renderscript-v8.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="762016371811e15a66e97cf27f3e852bf287aaf3">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\renderscript-v8_9fdf03daeefabe38c7b4ac21c4ff26747484db1d.jar" />
+    </item>
+    <item
+        jar="C:\Users\shadyfeng\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp-urlconnection\2.3.0\4f12ec1e1455909e1f0b8530c719c90b2d01745\okhttp-urlconnection-2.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="04f12ec1e1455909e1f0b8530c719c90b2d01745">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-2.3.0_82f31c0101e42fe125d709ad0e3dca01955a536e.jar" />
+    </item>
+    <item
+        jar="C:\Users\shadyfeng\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit\retrofit\1.9.0\a681c044244d9fc375198588297a39ba78028423\retrofit-1.9.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a681c044244d9fc375198588297a39ba78028423">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\retrofit-1.9.0_1ce6546edf59afe0a4a172aaadee8efac2569121.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\libs\internal_impl-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e239441500605809818997dd63b62a947195f8c">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\internal_impl-23.2.0_5fabb7d286528254671a051e4a88827c340b4e70.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.android.support\percent\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f11c0ed172c2ea17ad5e999df892d363ffa6c35b">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.android.support-percent-23.2.0_a3503961d96e3f4ca66387f1c1ba2134b27ad509.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.github.afollestad.material-dialogs\commons\0.8.5.3\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="15ee5b06fdfdbe3ad565bc56eff1e70231334d59">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.github.afollestad.material-dialogs-commons-0.8.5.3_e698bc21542a79b9b489cc1d6f60a574f56711f6.jar" />
+    </item>
+    <item
+        jar="C:\Users\shadyfeng\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.3.0\2e7bc7033dc2c8423e661224171b3133fb155b28\okhttp-2.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2e7bc7033dc2c8423e661224171b3133fb155b28">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\okhttp-2.3.0_59ba84e095e8a9cd8b381892d07c7b86847051e2.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.github.naman14\app-theme-engine\0.5.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="42d7b9d69f47a74b3be48c02001267165fc27b69">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.github.naman14-app-theme-engine-0.5.1_d7f7ff8c4ac0bdd879f424531967bcf9228d9267.jar" />
+    </item>
+    <item
+        jar="C:\Users\shadyfeng\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.3.0\1b355f73402020c5a0dcca58affc3ec3dfeabac1\okio-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1b355f73402020c5a0dcca58affc3ec3dfeabac1">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\okio-1.3.0_c6e69d3ba149d1d6ff13cd2418e9cfc28c6190f1.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\net.steamcrafted\materialiconlib\1.0.3\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="28d798851bb77283f4c0363b5baf5c22bbe83a82">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\net.steamcrafted-materialiconlib-1.0.3_384235d18f436279a8a2818be24b3f8bd014facb.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\de.Maxr1998\track-selector-lib\1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f14a57ab20f539de366b6600fe150d8794ed7a39">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\de.Maxr1998-track-selector-lib-1.1_f5e4f785480792dbabcd650f2888d98375354f43.jar" />
+    </item>
+    <item
+        jar="C:\Users\shadyfeng\.gradle\caches\modules-2\files-2.1\cn.bmob.android\bmob-sdk\3.4.6\41f54bb2846705eea0de5df48ddbcba378bd54e5\bmob-sdk-3.4.6.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="41f54bb2846705eea0de5df48ddbcba378bd54e5">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\bmob-sdk-3.4.6_6bc76e4d0704e3a40232fb424d38fc8fbb912e3e.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="bc599eb9531da9d18bc58ec4eb0b1a1d895f6839">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-23.2.0_b06c5724f69f712fe93e5ea83a810384ac08a478.jar" />
+    </item>
+    <item
+        jar="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8c108c22c99e794eff255bb34d2a461200c4cbb0">
+        <dex dex="F:\WorkSpace\Timber-master\Shadyfeng\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.2.0_a325ee7594f91ac3b69f1dd4c23b9c67bac9d72f.jar" />
+    </item>
+
+</items>

@@ -29,7 +29,21 @@ android {
         disable 'MissingTranslation'
         disable 'ExtraTranslation'
     }
-
+    signingConfigs {
+        myConfig {
+            storeFile file("shadyfeng.jks")
+            storePassword "123"
+            keyAlias "shady"
+            keyPassword "123"
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig  signingConfigs.myConfig//不要忘了要在release的时候加入我么的签名配置信息
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 repositories {

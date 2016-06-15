@@ -20,7 +20,6 @@ public class UserSongListAdapter extends RecyclerView.Adapter<MyViewHolder> {
     private Context context;
     private List<Integer> lists;
 
-
     public UserSongListAdapter(Context context, List<String> datas) {
         this.datas = datas;
         this.context = context;

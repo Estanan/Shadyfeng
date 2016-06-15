@@ -14,20 +14,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import com.naman14.timber.R;
 import com.naman14.timber.TimberApp;
 import com.naman14.timber.adapters.UserSongListAdapter;
-import com.naman14.timber.models.Playlist;
-import com.naman14.timber.models.SongLists;
-import com.naman14.timber.utils.TimberUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by shadyfeng on 2016/5/16.
@@ -40,6 +36,7 @@ public class UserInforActivity extends AppCompatActivity {
     UserSongListAdapter userSongListAdapter;
     String username;
     Bundle bundle=new Bundle();
+    Button btn_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,19 +49,16 @@ public class UserInforActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+//        if (actionBar != null) {
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//        }
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
 
-//        collapsingToolbar.setTitle(getString(R.string.userInfor));
-//        collapsingToolbar.setExpandedTitleColor(getColor(R.color.colorPrimaryBlack));
-//        collapsingToolbar.setCollapsedTitleTextColor(getColor(R.color.colorAccentBlack));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -79,10 +73,18 @@ public class UserInforActivity extends AppCompatActivity {
 //                collapsingToolbar.setContentScrimColor(bgColor);
                 collapsingToolbar.setCollapsedTitleTextColor(titleColor);
                 collapsingToolbar.setExpandedTitleColor(titleColor);
-                collapsingToolbar.setTitle(username + "de个人中心");
+                collapsingToolbar.setTitle(username+ "de个人中心");
             }
         });
-
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BmobUser.logOut(UserInforActivity.this);   //清除缓存用户对象
+                BmobUser currentUser = BmobUser.getCurrentUser(UserInforActivity.this); // 现在的currentUser是null了
+                Intent intent = new Intent(UserInforActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         userSongListAdapter.setOnItemClickLitener(new UserSongListAdapter.OnItemClickLitener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -94,29 +96,10 @@ public class UserInforActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 1:
-                        bundle.putString("ways", "see");
+                        bundle.putString("ways", "t");
                         Intent intentsee = new Intent(UserInforActivity.this, DetailsActivity.class);
                         intentsee.putExtras(bundle);
                         startActivity(intentsee);
-                        break;
-                    case 2:
-                        bundle.putString("ways", "w");
-                        Intent intentw = new Intent(UserInforActivity.this, DetailsActivity.class);
-                        intentw.putExtras(bundle);
-                        startActivity(intentw);
-                        break;
-                    case 3:
-                        bundle.putString("ways", "t");
-                        Intent intentt = new Intent(UserInforActivity.this, DetailsActivity.class);
-                        intentt.putExtras(bundle);
-                        startActivity(intentt);
-                        break;
-                    case 5:
-                        bundle.putString("ways", "a");
-                        Intent intenta = new Intent(UserInforActivity.this, DetailsActivity.class);
-                        intenta.putExtras(bundle);
-                        startActivity(intenta);
-                        TimberUtils.showToast(UserInforActivity.this,position+"");
                         break;
                     default:
                         break;
@@ -135,50 +118,20 @@ public class UserInforActivity extends AppCompatActivity {
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(
                 R.id.collapsing_toolbar);
         recyclerView= (RecyclerView) findViewById(R.id.recycler_view);
+        btn_logout= (Button) findViewById(R.id.bt_logout);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
     private List<String> datas;
     private void initData() {
         datas = new ArrayList<>();
-        BmobQuery<SongLists> query=new BmobQuery<SongLists>();
+//        BmobQuery<SongLists> query=new BmobQuery<SongLists>();
         TimberApp timberApp= (TimberApp) getApplicationContext();
         username=timberApp.getUsername();
-        query.addWhereEqualTo("username", "shady");
-        query.findObjects(UserInforActivity.this, new FindListener<SongLists>() {
-            @Override
-            public void onSuccess(List<SongLists> list) {
-                for (SongLists song : list) {
-                    List<Playlist> all = list.get(0).getPlayLists();
-//                    List<String> data=new ArrayList<String>();
-                    String s;
-                    for (int i = 0; i < all.size(); i++) {
-                        s = all.get(i).getName();
-                        datas.add(s);
-                    }
-                    datas.add("全部歌曲");
-//                    userSongListAdapter=new UserSongListAdapter(UserInforActivity.this,datas);
-//                    recyclerView.setAdapter(userSongListAdapter);
-//                    TimberUtils.showToast(UserInforActivity.this, s);
-                }
-                TimberUtils.showToast(UserInforActivity.this, "成功");
-            }
-
-            @Override
-            public void onError(int i, String s) {
-                TimberUtils.showToast(UserInforActivity.this, "失败"+i+s);
-
-            }
-        });
-
-//        for (int i = 0; i < 100; i++) {
         datas.add("全部歌曲");
-        datas.add("最近添加");
-        datas.add("最近播放");
+//        datas.add("最近播放");
+//        datas.add("最近添加");
         datas.add("我的最佳单曲");
-        datas.add("我喜欢");
-        datas.add("我喜欢");
-        datas.add("我喜欢");
 
 
 

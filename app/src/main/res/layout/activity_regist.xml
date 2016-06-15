@@ -59,6 +59,7 @@
             android:layout_below="@+id/regist"
             android:textColor="@color/colorAccentDarkDefault"
             android:text="已有账号登录"/>
+
     </android.support.percent.PercentRelativeLayout>
 
     <LinearLayout
@@ -104,7 +105,12 @@
                 android:layout_margin="8dp"
                 android:src="@drawable/ic_launcher" />
         </LinearLayout>
-
+        <ProgressBar
+            android:id="@+id/login_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </LinearLayout>

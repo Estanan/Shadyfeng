@@ -23,7 +23,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -193,16 +192,16 @@ public class BaseActivity extends ATEActivity implements ServiceConnection, Musi
 //            case R.id.action_settings:
 //                NavigationUtils.navigateToSettings(this);
 //                return true;
-            case R.id.action_shuffle:
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        MusicPlayer.shuffleAll(BaseActivity.this);
-                    }
-                }, 80);
-
-                return true;
+//            case R.id.action_shuffle:
+//                Handler handler = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        MusicPlayer.shuffleAll(BaseActivity.this);
+//                    }
+//                }, 80);
+//
+//                return true;
             case R.id.action_search:
                 NavigationUtils.navigateToSearch(this);
                 return true;

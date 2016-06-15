@@ -34,11 +34,8 @@ import com.naman14.timber.dataloaders.PlaylistLoader;
 import com.naman14.timber.dataloaders.PlaylistSongLoader;
 import com.naman14.timber.dataloaders.SongLoader;
 import com.naman14.timber.dataloaders.TopTracksLoader;
-import com.naman14.timber.models.LastAddedLists;
 import com.naman14.timber.models.Playlist;
 import com.naman14.timber.models.Song;
-import com.naman14.timber.models.RecentSongLists;
-import com.naman14.timber.models.TopSongLists;
 import com.naman14.timber.utils.Constants;
 import com.naman14.timber.utils.NavigationUtils;
 import com.naman14.timber.utils.TimberUtils;
@@ -49,8 +46,6 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import cn.bmob.v3.listener.SaveListener;
 
 public class PlaylistPagerFragment extends Fragment {
 
@@ -154,8 +149,9 @@ public class PlaylistPagerFragment extends Fragment {
 
 
     private class loadPlaylistImage extends AsyncTask<String, Void, String> {
-        TimberApp timberApp= (TimberApp) getActivity().getApplicationContext();
-        private String username=timberApp.getUsername();
+        TimberApp timberApp = (TimberApp) getActivity().getApplicationContext();
+        private String username = timberApp.getUsername();
+
         @Override
         protected String doInBackground(String... params) {
             if (getActivity() != null) {
@@ -163,28 +159,6 @@ public class PlaylistPagerFragment extends Fragment {
                     case 0:
                         final List<Song> lastAddedSongs = LastAddedLoader.getLastAddedSongs(getActivity());
                         songCountInt = lastAddedSongs.size();
-                        final LastAddedLists lastAddedLists=new LastAddedLists();
-                        lastAddedLists.setUsername(username);
-                        if (username!=null){
-                            thread=new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    lastAddedLists.addAllUnique("playLists", lastAddedSongs);
-                                    lastAddedLists.save(getActivity(), new SaveListener() {
-                                        @Override
-                                        public void onSuccess() {
-                                            TimberUtils.showToast(getActivity(),"lastAddedLists添加成功");
-                                        }
-
-                                        @Override
-                                        public void onFailure(int i, String s) {
-                                            TimberUtils.showToast(getActivity(),"lastAddedLists添加失败"+s);
-                                        }
-                                    });
-                                }
-                            });
-                            thread.start();
-                        }
                         if (songCountInt != 0) {
                             firstAlbumID = lastAddedSongs.get(0).albumId;
                             return TimberUtils.getAlbumArtUri(firstAlbumID).toString();
@@ -193,28 +167,6 @@ public class PlaylistPagerFragment extends Fragment {
                         TopTracksLoader recentloader = new TopTracksLoader(getActivity(), TopTracksLoader.QueryType.RecentSongs);
                         final List<Song> recentsongs = SongLoader.getSongsForCursor(TopTracksLoader.getCursor());
                         songCountInt = recentsongs.size();
-                        final RecentSongLists recentSongLists =new RecentSongLists();
-                        recentSongLists.setUsername(username);
-                        if (username!=null){
-                            thread=new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    recentSongLists.addAllUnique("playLists", recentsongs);
-                                    recentSongLists.save(getActivity(), new SaveListener() {
-                                        @Override
-                                        public void onSuccess() {
-                                            TimberUtils.showToast(getActivity(),"recentSongLists添加成功");
-                                        }
-
-                                        @Override
-                                        public void onFailure(int i, String s) {
-                                            TimberUtils.showToast(getActivity(),"recentSongLists添加失败"+s);
-                                        }
-                                    });
-                                }
-                            });
-                            thread.start();
-                        }
                         if (songCountInt != 0) {
                             firstAlbumID = recentsongs.get(0).albumId;
                             return TimberUtils.getAlbumArtUri(firstAlbumID).toString();
@@ -223,28 +175,6 @@ public class PlaylistPagerFragment extends Fragment {
                         TopTracksLoader topTracksLoader = new TopTracksLoader(getActivity(), TopTracksLoader.QueryType.TopTracks);
                         final List<Song> topsongs = SongLoader.getSongsForCursor(TopTracksLoader.getCursor());
                         songCountInt = topsongs.size();
-                        final TopSongLists topSongLists=new TopSongLists();
-                        topSongLists.setUsername(username);
-                        if (username!=null){
-                            thread=new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    topSongLists.addAllUnique("playLists", topsongs);
-                                    topSongLists.save(getActivity(), new SaveListener() {
-                                        @Override
-                                        public void onSuccess() {
-                                            TimberUtils.showToast(getActivity(),"topsongs添加成功");
-                                        }
-
-                                        @Override
-                                        public void onFailure(int i, String s) {
-                                            TimberUtils.showToast(getActivity(),"topsongs添加失败"+s);
-                                        }
-                                    });
-                                }
-                            });
-                            thread.start();
-                        }
                         if (songCountInt != 0) {
                             firstAlbumID = topsongs.get(0).albumId;
                             return TimberUtils.getAlbumArtUri(firstAlbumID).toString();

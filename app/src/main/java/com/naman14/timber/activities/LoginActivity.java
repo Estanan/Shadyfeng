@@ -21,7 +21,7 @@ import cn.bmob.v3.listener.SaveListener;
  */
 public class LoginActivity extends BaseThemedActivity {
     Toolbar toolbar;
-    TextView tv_username,tv_password;
+    TextView tv_username,tv_password,regist;
     Button bt_login;
     ProgressBar login_progress;
     BmobUser bu;
@@ -34,6 +34,19 @@ public class LoginActivity extends BaseThemedActivity {
         toolbar.setTitle("用户登录");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        regist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this,RegestActivity.class);
+                startActivity(intent);
+            }
+        });
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,8 +67,6 @@ public class LoginActivity extends BaseThemedActivity {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("username", tv_username.getText().toString());
                                 startActivity(intent);
-                                //通过BmobUser user = BmobUser.getCurrentUser(context)获取登录成功后的本地用户信息
-                                //如果是自定义用户对象MyUser，可通过MyUser user = BmobUser.getCurrentUser(context,MyUser.class)获取自定义用户信息
                             }
                             @Override
                             public void onFailure(int code, String msg) {
@@ -76,6 +87,7 @@ public class LoginActivity extends BaseThemedActivity {
         tv_username= (TextView) findViewById(R.id.et_username);
         tv_password= (TextView) findViewById(R.id.et_password);
         login_progress= (ProgressBar) findViewById(R.id.login_progress);
+        regist= (TextView) findViewById(R.id.regist);
     }
 
 }

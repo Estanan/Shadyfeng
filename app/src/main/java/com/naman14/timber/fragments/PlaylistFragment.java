@@ -34,9 +34,11 @@ import com.afollestad.appthemeengine.ATE;
 import com.naman14.timber.R;
 import com.naman14.timber.TimberApp;
 import com.naman14.timber.dataloaders.PlaylistLoader;
-import com.naman14.timber.dialogs.CreatePlaylistDialog;
+import com.naman14.timber.dataloaders.SongLoader;
+import com.naman14.timber.dataloaders.TopTracksLoader;
 import com.naman14.timber.models.Playlist;
-import com.naman14.timber.models.SongLists;
+import com.naman14.timber.models.Song;
+import com.naman14.timber.models.TopSongLists;
 import com.naman14.timber.subfragments.PlaylistPagerFragment;
 import com.naman14.timber.utils.TimberUtils;
 import com.naman14.timber.widgets.MultiViewPager;
@@ -88,7 +90,6 @@ public class PlaylistFragment extends Fragment {
         };
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(3);
-        new upload().execute("");;
         return rootView;
 
     }
@@ -119,9 +120,14 @@ public class PlaylistFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_new_playlist:
-                CreatePlaylistDialog.newInstance().show(getChildFragmentManager(), "CREATE_PLAYLIST");
+//            case R.id.action_new_playlist:
+//                CreatePlaylistDialog.newInstance().show(getChildFragmentManager(), "CREATE_PLAYLIST");
+//                return true;
+            case R.id.action_upload:
+                new upload().execute("");
                 return true;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -150,67 +156,58 @@ public class PlaylistFragment extends Fragment {
 
         @Override
         protected String doInBackground(String... params) {
-            final List<Playlist> playlists = PlaylistLoader.getPlaylists(getActivity(), true);
-            TimberApp timberApp= (TimberApp) getActivity().getApplicationContext();
-            username=timberApp.getUsername();
-
-            /**
-             * 获取SongLists的objectId
-             */
-            final String[] objectId = new String[1];
-            BmobQuery<SongLists> query=new BmobQuery<>();
-            query.addWhereEqualTo("username", username);
-            query.findObjects(getActivity(), new FindListener<SongLists>() {
-                @Override
-                public void onSuccess(List<SongLists> list) {
-                    for (SongLists songLists : list) {
-                        objectId[0] = songLists.getObjectId();
+            TimberApp timberApp = (TimberApp) getActivity().getApplicationContext();
+            username = timberApp.getUsername();
+            final List<Song> topsongs = SongLoader.getSongsForCursor(TopTracksLoader.getCursor());
+            if (username != null) {
+                /**
+                 * 查询用户,获取topsongs的objectId
+                 */
+                final String[] objectId = new String[1];
+                BmobQuery<TopSongLists> query = new BmobQuery<>();
+                query.addWhereEqualTo("username", username);
+                query.findObjects(getActivity(), new FindListener<TopSongLists>() {
+                    @Override
+                    public void onSuccess(List<TopSongLists> list) {
+                        for (TopSongLists topSongLists : list) {
+                            objectId[0] = topSongLists.getObjectId();
+                        }
                     }
-                    TimberUtils.showToast(getActivity(), objectId[0]);
-                }
 
-                @Override
-                public void onError(int i, String s) {
+                    @Override
+                    public void onError(int i, String s) {
 
-                }
-            });
-
-            /**
-             * 插入playlists
-             */
-            if (username!=null){
-                final SongLists songLists=new SongLists();
-                songLists.setUsername(username);
-                songLists.addAllUnique("playLists", playlists);
-                songLists.save(getActivity(), new SaveListener() {
+                    }
+                });
+                final TopSongLists topSongLists = new TopSongLists();
+                topSongLists.setUsername(username);
+                topSongLists.addAllUnique("playLists", topsongs);
+                topSongLists.save(getActivity(), new SaveListener() {
                     @Override
                     public void onSuccess() {
-                        TimberUtils.showToast(getActivity(), "成功插入");
+                        TimberUtils.showToast(getActivity(), "topsongs添加成功");
                     }
 
                     @Override
                     public void onFailure(int i, String s) {
-                        TimberUtils.showToast(getActivity(), "Playlists插入失败" + s + i);
-                        /**
-                         * 如果存在，则更新数组
-                         */
-                        if (i==401){
-                            songLists.update(getActivity(), objectId[0], new UpdateListener() {
-                                @Override
-                                public void onSuccess() {
-                                    TimberUtils.showToast(getActivity(), "Playlists成功更新");
-                                }
+//                        TimberUtils.showToast(getActivity(), "topsongs添加失败" + s);
+                        topSongLists.setPlayLists(topsongs);
+                        topSongLists.update(getActivity(), objectId[0], new UpdateListener() {
+                            @Override
+                            public void onSuccess() {
+                                TimberUtils.showToast(getActivity(), "topsongs成功更新");
+                                int s = topsongs.size();
+                            }
 
-                                @Override
-                                public void onFailure(int i, String s) {
-                                    TimberUtils.showToast(getActivity(), "Playlists更新失败" + s+i+objectId[0]);
-                                }
-                            });
-                        }
+                            @Override
+                            public void onFailure(int i, String s) {
+                                TimberUtils.showToast(getActivity(), "topsongs更新失败" + s + i + objectId[0]);
+                            }
+                        });
                     }
                 });
-
             }
+
             return "Executed";
         }
     }

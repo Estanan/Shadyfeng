@@ -42,10 +42,10 @@
             android:text="123" />
 
         <TextView
-            android:id="@+id/tv_forget"
+            android:id="@+id/regist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="忘记密码？"
+            android:text="注册帐号"
             android:textColor="@color/colorAccentDarkDefault" />
     </LinearLayout>
 

@@ -3,6 +3,7 @@
 
     <string name="action_settings">设置</string>
     <string name="userInfor">个人中心</string>
+    <string name="logout">退出登录</string>
 
     <string name="accessibility_play">播放</string>
     <string name="accessibility_pause">暂停</string>
@@ -16,6 +17,8 @@
     <string name="accessibility_queue">开启队列</string>
     <string name="accessibility_browse">浏览音乐</string>
 
+    <string name="menu_upload">上传</string>
+    <string name="menu">菜单</string>
     <string name="menu_sort_by">排序</string>
     <string name="sort_order_entry_az">A 到 Z</string>
     <string name="sort_order_entry_za">Z 到 A</string>
@@ -48,6 +51,7 @@
     <string name="black">黑胶唱片</string>
 
     <string name="last_opened">上次打开</string>
+    <string name="allSongs">全部歌曲</string>
 
     <string name="songs">歌曲</string>
     <string name="albums">专辑</string>

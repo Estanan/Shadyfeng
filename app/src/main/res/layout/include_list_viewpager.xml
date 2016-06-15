@@ -23,7 +23,6 @@
         android:id="@+id/quickcontrols_container">
 
 
-
     </FrameLayout>
 
 </com.naman14.timber.slidinguppanel.SlidingUpPanelLayout>
